@@ -16,6 +16,16 @@ A simple, modular Go template for calling LLM models (Gemini & Claude) via an An
     - `claude-opus-4-5` (Standard Mode)
     - `claude-opus-4-5-thinking` (Thinking Mode)
 
+## How to Get All Supported Models
+
+You can fetch the real-time list of all models supported by your Antigravity accounts by calling the following endpoint:
+
+```bash
+curl -H "Authorization: Bearer your-sk-key" https://model.liushiming.cn/antigravity/models
+```
+
+This returns a JSON list of all available model IDs, which can be used in your API requests.
+
 ## Usage
 
 1. Set your environment variables:
