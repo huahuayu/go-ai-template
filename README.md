@@ -1,17 +1,20 @@
 # Go AI Template
 
-A simple, dependency-free Go template for calling LLM models (Gemini & Claude) via an Antigravity-compatible API gateway.
+A simple, modular Go template for calling LLM models (Gemini & Claude) via an Antigravity-compatible API gateway.
 
 ## Features
 
-- **Protocol Native**: Calls Gemini via Google REST and Claude via Anthropic Messages format.
-- **Dependency Free**: Uses only Go standard library (`net/http`, `encoding/json`).
-- **Antigravity Optimized**: Works perfectly with `sub2api` or direct Antigravity endpoints.
+- **Modular Design**: Separated packages for `gemini` and `claude` logic.
+- **Dependency Free**: Uses only Go standard library.
+- **Test-Driven**: Examples provided as Go Tests for easy integration.
 
 ## Models Covered
 
-- **Gemini**: `gemini-3-flash`, `gemini-3-pro-low`, `gemini-3-pro-high`, `gemini-2.5-pro`, etc.
-- **Claude**: `claude-3-5-sonnet-20240620`, `claude-sonnet-4-5`, `claude-opus-4-5-thinking` (High-end model), etc.
+- **Gemini**: `gemini-3-flash`, `gemini-3-pro-high`, etc.
+- **Claude**: 
+    - `claude-sonnet-4-5`
+    - `claude-opus-4-5` (Standard Mode)
+    - `claude-opus-4-5-thinking` (Thinking Mode)
 
 ## Usage
 
@@ -21,9 +24,9 @@ A simple, dependency-free Go template for calling LLM models (Gemini & Claude) v
    export AI_API_KEY="your-sk-key"
    ```
 
-2. Run the code:
+2. Run the tests:
    ```bash
-   go run main.go
+   go test -v .
    ```
 
 ## Key Concept: Dual Protocol Support
@@ -31,5 +34,3 @@ A simple, dependency-free Go template for calling LLM models (Gemini & Claude) v
 The template demonstrates how to handle different API schemas:
 - **Gemini Path**: `/v1beta/models/{model}:generateContent`
 - **Claude Path**: `/v1/messages`
-
-By using the `/antigravity` path in your Base URL, the gateway correctly routes both protocols using a single API Key.
