@@ -49,13 +49,14 @@ func (c *Client) StreamClaude(modelName, prompt string) error {
 		return fmt.Errorf("Claude API error (%d): %s", resp.StatusCode, string(body))
 	}
 
+	// Scanner reads the response body line by line (SSE data)
 	scanner := bufio.NewScanner(resp.Body)
 	fmt.Printf("[%s] Streaming: ", modelName)
 	for scanner.Scan() {
 		line := scanner.Text()
 		
-		// Claude uses "event: ..." followed by "data: ..."
-		// We only care about data lines in this simplified example
+		// Claude sends "event: ..." followed by "data: ..."
+		// For simplicity, we process only lines starting with "data: "
 		if !strings.HasPrefix(line, "data: ") {
 			continue
 		}
@@ -67,7 +68,7 @@ func (c *Client) StreamClaude(modelName, prompt string) error {
 			continue
 		}
 
-		// Only print if it's a content_block_delta
+		// Only print if the event type is content_block_delta
 		if delta.Type == "content_block_delta" {
 			fmt.Print(delta.Delta.Text)
 		}

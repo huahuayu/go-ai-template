@@ -56,6 +56,7 @@ func (c *Client) StreamGemini(modelName, prompt string) error {
 		return fmt.Errorf("Gemini API error (%d): %s", resp.StatusCode, string(body))
 	}
 
+	// Use a scanner to read the SSE data line by line
 	scanner := bufio.NewScanner(resp.Body)
 	fmt.Printf("[%s] Streaming: ", modelName)
 	for scanner.Scan() {
@@ -76,7 +77,7 @@ func (c *Client) StreamGemini(modelName, prompt string) error {
 
 		if len(streamResp.Candidates) > 0 && len(streamResp.Candidates[0].Content.Parts) > 0 {
 			content := streamResp.Candidates[0].Content.Parts[0].Text
-			fmt.Print(content)
+			fmt.Print(content) // Print each chunk as it arrives
 		}
 	}
 

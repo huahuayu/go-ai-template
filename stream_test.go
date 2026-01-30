@@ -16,14 +16,14 @@ func TestStreaming(t *testing.T) {
 	client := NewClient(baseURL, apiKey)
 
 	t.Run("Gemini-3-Flash", func(t *testing.T) {
-		err := client.StreamGemini("gemini-3-flash", "Say 'Gemini Stream is active'")
+		err := client.StreamGemini("gemini-3-flash", "Tell me a long story about the history of artificial intelligence, detailed and step by step.")
 		if err != nil {
 			t.Errorf("Gemini Stream Error: %v", err)
 		}
 	})
 
 	t.Run("Claude-3-5-Sonnet", func(t *testing.T) {
-		err := client.StreamClaude("claude-3-5-sonnet-20240620", "Say 'Claude Stream is active'")
+		err := client.StreamClaude("claude-3-5-sonnet-20240620", "Explain the inner workings of quantum computing and its future implications in a very long essay.")
 		if err != nil {
 			t.Errorf("Claude Stream Error: %v", err)
 		}
