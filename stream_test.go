@@ -5,7 +5,7 @@ import (
 	"testing"
 )
 
-func TestStreamGemini(t *testing.T) {
+func TestStreaming(t *testing.T) {
 	baseURL := os.Getenv("AI_BASE_URL")
 	apiKey := os.Getenv("AI_API_KEY")
 
@@ -15,9 +15,17 @@ func TestStreamGemini(t *testing.T) {
 
 	client := NewClient(baseURL, apiKey)
 
-	// 测试 Gemini 3 Flash 的流式输出
-	err := client.StreamGemini("gemini-3-flash", "Tell me a very short joke.")
-	if err != nil {
-		t.Errorf("Stream Error: %v", err)
-	}
+	t.Run("Gemini-3-Flash", func(t *testing.T) {
+		err := client.StreamGemini("gemini-3-flash", "Say 'Gemini Stream is active'")
+		if err != nil {
+			t.Errorf("Gemini Stream Error: %v", err)
+		}
+	})
+
+	t.Run("Claude-3-5-Sonnet", func(t *testing.T) {
+		err := client.StreamClaude("claude-3-5-sonnet-20240620", "Say 'Claude Stream is active'")
+		if err != nil {
+			t.Errorf("Claude Stream Error: %v", err)
+		}
+	})
 }

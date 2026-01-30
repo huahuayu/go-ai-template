@@ -10,7 +10,7 @@ import (
 	"strings"
 )
 
-// GeminiStreamResponse 简化的 Gemini 流式响应结构
+// GeminiStreamResponse represents the Google Gemini SSE chunk format
 type GeminiStreamResponse struct {
 	Candidates []struct {
 		Content struct {
@@ -22,7 +22,7 @@ type GeminiStreamResponse struct {
 }
 
 func (c *Client) StreamGemini(modelName, prompt string) error {
-	// 注意：Gemini 流式接口通常是 streamGenerateContent
+	// Gemini uses streamGenerateContent for streaming
 	url := fmt.Sprintf("%s/v1beta/models/%s:streamGenerateContent?alt=sse", c.cfg.BaseURL, modelName)
 
 	reqBody := map[string]interface{}{
@@ -53,10 +53,9 @@ func (c *Client) StreamGemini(modelName, prompt string) error {
 
 	if resp.StatusCode != http.StatusOK {
 		body, _ := io.ReadAll(resp.Body)
-		return fmt.Errorf("API error (%d): %s", resp.StatusCode, string(body))
+		return fmt.Errorf("Gemini API error (%d): %s", resp.StatusCode, string(body))
 	}
 
-	// 使用 Scanner 逐行读取 SSE 数据
 	scanner := bufio.NewScanner(resp.Body)
 	fmt.Printf("[%s] Streaming: ", modelName)
 	for scanner.Scan() {
@@ -77,10 +76,10 @@ func (c *Client) StreamGemini(modelName, prompt string) error {
 
 		if len(streamResp.Candidates) > 0 && len(streamResp.Candidates[0].Content.Parts) > 0 {
 			content := streamResp.Candidates[0].Content.Parts[0].Text
-			fmt.Print(content) // 实时打印字符
+			fmt.Print(content)
 		}
 	}
 
-	fmt.Println("\n[Stream Finished]")
+	fmt.Println("\n[Gemini Stream Finished]")
 	return scanner.Err()
 }

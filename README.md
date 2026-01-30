@@ -4,9 +4,9 @@ A simple, modular Go template for calling LLM models (Gemini & Claude) via an An
 
 ## Features
 
-- **Modular Design**: Separated packages for `gemini` and `claude` logic.
+- **Modular Design**: Separated implementations for `Gemini` (Google SDK format) and `Claude` (Anthropic Messages format).
+- **SSE Streaming**: Separate logic for processing Google and Anthropic stream formats.
 - **Dependency Free**: Uses only Go standard library.
-- **Test-Driven**: Examples provided as Go Tests for easy integration.
 
 ## Supported Models
 
