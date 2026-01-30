@@ -8,13 +8,24 @@ A simple, modular Go template for calling LLM models (Gemini & Claude) via an An
 - **Dependency Free**: Uses only Go standard library.
 - **Test-Driven**: Examples provided as Go Tests for easy integration.
 
-## Models Covered
+## Supported Models
 
-- **Gemini**: `gemini-3-flash`, `gemini-3-pro-high`, etc.
-- **Claude**: 
-    - `claude-sonnet-4-5`
-    - `claude-opus-4-5` (Standard Mode)
-    - `claude-opus-4-5-thinking` (Thinking Mode)
+### Claude
+- `claude-opus-4-5-thinking` (Thinking Mode)
+- `claude-opus-4-5` (Standard Mode)
+- `claude-sonnet-4-5`
+- `claude-sonnet-4-5-thinking`
+
+### Gemini
+- `gemini-3-flash`
+- `gemini-3-pro-low`
+- `gemini-3-pro-high`
+- `gemini-3-pro-preview`
+- `gemini-3-pro-image`
+- `gemini-2.5-flash`
+- `gemini-2.5-flash-lite`
+- `gemini-2.5-flash-thinking`
+- `gemini-2.5-pro`
 
 ## How to Get All Supported Models
 
