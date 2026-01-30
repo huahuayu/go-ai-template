@@ -185,4 +185,15 @@ func main() {
 	} else {
 		fmt.Printf("Claude Response: %s\n", claudeText)
 	}
+
+	fmt.Println()
+
+	// 4. Test Claude 4.5 Opus
+	fmt.Println("--- Testing Claude 4.5 Opus ---")
+	opusText, err := client.CallClaude("claude-opus-4-5-thinking", "Explain the concept of concurrency in Go in one sentence.")
+	if err != nil {
+		fmt.Printf("Opus Error: %v\n", err)
+	} else {
+		fmt.Printf("Opus Response: %s\n", opusText)
+	}
 }

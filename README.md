@@ -11,7 +11,7 @@ A simple, dependency-free Go template for calling LLM models (Gemini & Claude) v
 ## Models Covered
 
 - **Gemini**: `gemini-3-flash`, `gemini-3-pro-low`, `gemini-3-pro-high`, `gemini-2.5-pro`, etc.
-- **Claude**: `claude-3-5-sonnet-20240620`, `claude-sonnet-4-5`, etc.
+- **Claude**: `claude-3-5-sonnet-20240620`, `claude-sonnet-4-5`, `claude-opus-4-5-thinking` (High-end model), etc.
 
 ## Usage
 
